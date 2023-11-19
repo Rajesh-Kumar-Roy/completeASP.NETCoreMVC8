@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bulky.Models;
 
 namespace Bulky.DataAccess.IRepository
 {
-    public interface IUnitOfWork
-    { 
-        ICategoryRepository Category { get; }
-        IProductRepository Product { get; }
-        void Save();
+    public interface IProductRepository: IRepository<Product>
+    {
+        void Update(Product product);
     }
 }
