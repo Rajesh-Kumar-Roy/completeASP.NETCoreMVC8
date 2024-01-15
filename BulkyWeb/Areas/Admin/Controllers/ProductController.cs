@@ -72,6 +72,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
                     productVm.Product.ImageUrl = @"\images\products\" + fileName;
                 }
                 _unitOfWork.Product.Add(productVm.Product);
+                if (productVm.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productVm.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productVm.Product);
+                }
                 _unitOfWork.Save();
                 TempData["success"] = "Product Created Successfully.";
                 return RedirectToAction("Index");
