@@ -1,12 +1,15 @@
 ﻿using Bulky.DataAccess.IRepository;
 using Bulky.Models;
 using Bulky.Models.ViewModels;
+using Bulky.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,7 +23,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            List<Product> products = _unitOfWork.Product.GetAll(includeProperties:"Category").ToList();
+            List<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
             // IEnumerable<SelectListItem> categoryList = _unitOfWork.Category.GetAll().Select(c => new SelectListItem
             // {
             //     Text = c.Name,
@@ -143,7 +146,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult EditPost(int? id)
         {
-        
+
             Product? productFrmDb = _unitOfWork.Product.Get(u => u.Id == id);
             if (productFrmDb == null)
             {
@@ -178,7 +181,7 @@ namespace BulkyWeb.Areas.Admin.Controllers
             {
                 System.IO.File.Delete(oldImagePath);
             }
-            
+
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
 
