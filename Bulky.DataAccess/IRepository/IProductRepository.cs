@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bulky.Models;
+﻿using Bulky.Models;
 
 namespace Bulky.DataAccess.IRepository
 {
-    public interface IProductRepository: IRepository<Product>
+    public interface IProductRepository : IRepository<Product>
     {
         void Update(Product product);
     }

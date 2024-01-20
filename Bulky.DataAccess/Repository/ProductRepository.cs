@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Data;
 using Bulky.DataAccess.IRepository;
 using Bulky.Models;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class ProductRepository: Repository<Product>,IProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private readonly ApplicationContext _db;
         public ProductRepository(ApplicationContext db) : base(db)

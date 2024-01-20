@@ -4,19 +4,17 @@ using Bulky.Models;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class CompanyRepository : Repository<Company>, ICompanyRepository
     {
         private readonly ApplicationContext _db;
-        public CategoryRepository(ApplicationContext db) : base(db)
+        public CompanyRepository(ApplicationContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Category category)
+        public void Update(Company company)
         {
-            _db.Categories.Update(category);
+            _db.Companies.Update(company);
         }
-
-
     }
 }

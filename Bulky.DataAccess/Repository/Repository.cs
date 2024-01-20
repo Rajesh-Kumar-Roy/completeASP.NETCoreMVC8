@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Bulky.DataAccess.Data;
+﻿using Bulky.DataAccess.Data;
 using Bulky.DataAccess.IRepository;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class Repository<T>: IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationContext _db;
         internal DbSet<T> DbSet;
@@ -26,7 +21,7 @@ namespace Bulky.DataAccess.Repository
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties
-                             .Split(new char[]{','},StringSplitOptions.RemoveEmptyEntries))
+                             .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(includeProp);
                 }
@@ -56,12 +51,12 @@ namespace Bulky.DataAccess.Repository
 
         public void Remove(T entity)
         {
-           DbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entities)
         {
-           DbSet.RemoveRange(entities);
+            DbSet.RemoveRange(entities);
         }
     }
 }
